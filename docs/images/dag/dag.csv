@@ -1,0 +1,18 @@
+label,new_label,color,software,group
+cutadapt,Trimming,#1aff8c,cutadapt,Trimming
+rsem,Alignment,#ff6666,RSEM-STAR,
+infer_experiment,Infer experiment,#3366ff,RseQC,QC metrics
+junction_annotation,Junction annotation,#3366ff,RseQC,QC metrics
+junction_saturation,Junction saturation,#3366ff,RseQC,QC metrics
+mismatch_profile,Mismatch profile,#3366ff,RseQC,QC metrics
+multiqc,Report,#669900,MultiQC,QC metrics
+complexity,Complexity,#ff944d,Picard,QC metrics
+duplicates,Duplicates,#ff944d,Picard,QC metrics
+group,Group,#ff944d,Picard,QC metrics
+multimetrics,Multimetrics,#ff944d,Picard,QC metrics
+rnaseqmetrics,RNA-Seq metrics,#ff944d,Picard,QC metrics
+read_distribution,Read distribution,#3366ff,RseQC,QC metrics
+rnaseqc,RNA-Seq metrics,#a64dff,RNA-SeQC,QC metrics
+transcript_integrity_number,Transcript integrity number,#3366ff,RseQC,QC metrics
+build_matrix,Build matrix,#ff3333,"R, SummarizedExperiment",
+do_pca,Principal component analysis,#ff3333,"R, DESeq2",
