@@ -9,7 +9,7 @@ The pipeline was written by [The Bioinformatics & Biostatistics Group][url_babs]
 
 ## Pipeline summary
 
-1. Raw read QC ([`FastQC`][url_fastqc])
+1. Raw read QC ([`FastQC`]([url_fastqc]))
 2. Adapter trimming ([`cutadapt`][url_cutadapt])
 3. Alignment and quantification ([`RSEM`][url_rsem], [`STAR`][url_star])
 4. Sorting and indexing ([`SAMtools`][url_samtools])
