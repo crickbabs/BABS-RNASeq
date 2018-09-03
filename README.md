@@ -13,7 +13,8 @@ The pipeline was written by [The Bioinformatics & Biostatistics Group](https://w
 2. Adapter trimming ([`cutadapt`](http://cutadapt.readthedocs.io/en/stable/installation.html))
 3. Alignment and quantification ([`RSEM`](https://deweylab.github.io/RSEM/), [`STAR`](https://github.com/alexdobin/STAR))
 4. Various metrics with:
-    * ([`picard`](url_picard))
+    * ([`picard`][url_picard])
+	      * Library complexity ([`EstimateLibraryComplexity`][url_picard_complexity])
     * ([`SAMtools`](https://sourceforge.net/projects/samtools/files/samtools/))
 5. Filtering to remove:
     * reads mapping to mitochondrial DNA ([`SAMtools`](https://sourceforge.net/projects/samtools/files/samtools/))
