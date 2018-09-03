@@ -12,39 +12,22 @@ The pipeline was written by [The Bioinformatics & Biostatistics Group][url_babs]
 1. Raw read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc))
 2. Adapter trimming ([`cutadapt`](https://cutadapt.readthedocs.io/en/stable))
 3. Alignment and quantification ([`RSEM`](https://github.com/deweylab/RSEM), [`STAR`](https://github.com/alexdobin/STAR))
-4. Sorting and indexing ([`SAMtools`][url_samtools])
-(http://www.htslib.org/doc/samtools.html)
+4. Sorting and indexing ([`SAMtools`](http://www.htslib.org/doc/samtools.html))
 5. Quality control metrics:
 	* [`picard`](https://broadinstitute.github.io/picard/index.html):
 		* Groups ([`AddOrReplaceReadGroups`](https://broadinstitute.github.io/picard/command-line-overview.html#AddOrReplaceReadGroups))
 		* Duplicates ([`MarkDuplicates`](https://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates))
-		* Library complexity ([`EstimateLibraryComplexity`][url_picard_complexity])
-(https://broadinstitute.github.io/picard/command-line-overview.html#EstimateLibraryComplexity)
-		* Various metrics ([`CollectRnaSeqMetrics`][url_picard_rnaseqmetrics], [`CollectMultipleMetrics`][url_picard_multimetrics])
-(https://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics)
-(https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics)
-	* [`RSeQC`][url_rseqc]:
-(http://rseqc.sourceforge.net
-		* Samples quality ([`infer_experiment.py`][url_rseqc_infer_experiment], [`read_distribution.py`][url_rseqc_read_distribution], [`tin.py`][url_rseqc_tin])
-(http://rseqc.sourceforge.net/#read-distribution-py)
-(http://rseqc.sourceforge.net/#infer-experiment-py)
-(http://rseqc.sourceforge.net/#tin-py)
-		* Alternative splicing ([`junction_annotation.py`][url_rseqc_junction_annotation], [`junction_saturation.py`][url_rseqc_junction_saturation])
-(http://rseqc.sourceforge.net/#junction-annotation-py)
-(http://rseqc.sourceforge.net/#junction-saturation-py)
-		* Mismatch ([`mismatch_profile.py`][url_rseqc_mismatch_profile])
-(http://rseqc.sourceforge.net/#mismatch-profile-py)
-	* [`RNA-SeQC`][url_rnaseqc]
-(http://archive.broadinstitute.org/cancer/cga/rna-seqc)
+		* Library complexity ([`EstimateLibraryComplexity`](https://broadinstitute.github.io/picard/command-line-overview.html#EstimateLibraryComplexity))
+		* Various metrics ([`CollectRnaSeqMetrics`](https://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics), [`CollectMultipleMetrics`](https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics))
+	* [`RSeQC`](http://rseqc.sourceforge.net):
+		* Samples quality ([`infer_experiment.py`](http://rseqc.sourceforge.net/#infer-experiment-py), [`read_distribution.py`](http://rseqc.sourceforge.net/#read-distribution-py), [`tin.py`](http://rseqc.sourceforge.net/#tin-py))
+		* Alternative splicing ([`junction_annotation.py`](http://rseqc.sourceforge.net/#junction-annotation-py), [`junction_saturation.py`](http://rseqc.sourceforge.net/#junction-saturation-py))
+		* Mismatch ([`mismatch_profile.py`](http://rseqc.sourceforge.net/#mismatch-profile-py))
+	* [`RNA-SeQC`](http://archive.broadinstitute.org/cancer/cga/rna-seqc)
 6. Preparation for statistical analysis:
-	* Create a count matrix ([`R`][url_r], [`SummarizedExperiment`][url_summarized_experiment])
-(https://www.r-project.org)
-(https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html
-	* Perform a principal component analysis ([`R`][url_r], [`DESeq2`][url_deseq2])
-(https://www.r-project.org)
-(https://bioconductor.org/packages/release/bioc/html/DESeq2.html
-8. Collect and present a report ([`MultiQC`][url_multiqc])
-(http://multiqc.info)
+	* Create a count matrix ([`R`](https://www.r-project.org), [`SummarizedExperiment`](https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html))
+	* Perform a principal component analysis ([`R`](https://www.r-project.org), [`DESeq2`](https://bioconductor.org/packages/release/bioc/html/DESeq2.html))
+8. Collect and present a report ([`MultiQC`](http://multiqc.info))
 
 ## Documentation
 
