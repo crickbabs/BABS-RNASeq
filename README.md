@@ -36,10 +36,9 @@ The documentation for the pipeline can be found in the `docs/` directory:
 1. [Installation](docs/install.md)
 2. [Design file](docs/design.md)
 3. [Pipeline configuration](docs/config.md)
-3. [Reference genome](docs/genome.md)
-5. [Running the pipeline](docs/usage.md)
-6. [Output and interpretation of results](docs/output.md)
-7. [Troubleshooting](docs/troubleshooting.md)
+4. [Running the pipeline](docs/usage.md)
+5. [Output and interpretation of results](docs/output.md)
+6. [Troubleshooting](docs/troubleshooting.md)
 
 ## Pipeline DAG
 
