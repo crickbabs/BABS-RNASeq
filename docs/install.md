@@ -77,10 +77,10 @@ Install the multiqc plugins:
 Finally the variable `ANACONDA_ENV` needs to be changed in the `main.nf` file. This variable has to be set to the path of the anaconda environment you just created.
 
 
-You can now configure the pipeline to run on a Linux system of your choice. See [Pipeline configuration][url_doc_config] and [Reference genome][url_doc_genom] sections.
+You can now configure the pipeline to run on a Linux system of your choice. See [Pipeline configuration][url_doc_config] and [Reference genome][url_doc_genome] sections.
 
 [url_nextflow]: http://www.nextflow.io
 [url_git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-[url_doc_config]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/config.md)
+[url_doc_config]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/config.md
 [url_doc_genome]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/genome.md
 

@@ -14,6 +14,6 @@ All the parameters except `modules` are mandatory.
 
 There are two ways to specify the analysis parameters : with a parameter `yml` file or via command line arguments (see [Running the pipeline][url_doc_usage]).
 
-[url_doc_usage]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/usage.md)
-[url_doc_design]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/design.md)
+[url_doc_usage]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/usage.md
+[url_doc_design]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/design.md
 
