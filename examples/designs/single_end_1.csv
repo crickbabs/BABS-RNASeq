@@ -1,0 +1,12 @@
+sample,file,tissue
+MON324A10,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A10_S42_L005_R1_001.fastq.gz,CD44pos
+MON324A11,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A11_S43_L005_R1_001.fastq.gz,CD44pos
+MON324A1,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A1_S33_L005_R1_001.fastq.gz,uterus
+MON324A2,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A2_S34_L005_R1_001.fastq.gz,uterus
+MON324A3,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A3_S35_L005_R1_001.fastq.gz,lung
+MON324A4,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A4_S36_L005_R1_001.fastq.gz,lung
+MON324A5,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A5_S37_L005_R1_001.fastq.gz,lung
+MON324A6,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A6_S38_L005_R1_001.fastq.gz,CD24pos
+MON324A7,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A7_S39_L005_R1_001.fastq.gz,CD24pos
+MON324A8,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A8_S40_L005_R1_001.fastq.gz,CD24pos
+MON324A9,/camp/stp/babs/inputs/sequencing/fastq/170830_K00102_0148_AHKH3TBBXX/fastq/Aldama_250517/MON324A9_S41_L005_R1_001.fastq.gz,CD44pos

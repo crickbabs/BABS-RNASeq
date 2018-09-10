@@ -1,0 +1,70 @@
+
+title: "BABS RNA-Seq"
+subtitle: "RNA-Seq QC metrics."
+intro_text: "Second version of our RNA-Seq pipeline."
+report_comment: "What do would like to add guys?"
+
+custom_logo: "/camp/stp/babs/working/bahn/code/nf/qc_pipeline/conf/logo.jpg"
+custom_logo_url: "https://www.crick.ac.uk/research/science-technology-platforms/bioinformatics-and-biostatistics"
+custom_logo_title: "The Francis Crick Institute"
+
+log_filesize_limit: 30000000
+
+fn_clean_exts:
+   - .rg
+   - .dupmarked
+   - .stats
+   - cutadapt.fastq.gz
+   - _1
+   - _2
+   - _R1_001
+   - _R2_001
+   - _R1_001.fastq.gz
+   - _R2_001.fastq.gz
+   - _1_cutadapt.fastq.gz
+   - _2_cutadapt.fastq.gz
+   - .cnt
+
+sp:
+   pca:
+      fn: "rnaseq_pca.json"
+
+module_order:
+   - fastqc:
+      module_tag:
+         - RNA
+         - DNA
+   - cutadapt:
+      module_tag:
+         - RNA
+         - DNA
+   - rsem:
+      module_tag:
+         - RNA
+   - star:
+      module_tag:
+         - RNA
+   - samtools:
+      module_tag:
+         - DNA
+         - RNA
+   - picard:
+      module_tag:
+         - DNA
+         - RNA
+   - rseqc:
+      module_tag:
+         - RNA
+   - rna_seqc:
+      module_tag:
+         - RNA
+   - fastq_screen:
+      module_tag:
+         - RNA
+         - DNA
+   - pca:
+      module_tag:
+         - RNA
+         - DNA
+
+

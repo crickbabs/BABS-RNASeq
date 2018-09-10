@@ -1,0 +1,7 @@
+sample,file,treatment
+control1,examples/fastq/single_end/sample1.fastq.gz,untreated
+control2,examples/fastq/single_end/sample2.fastq.gz,untreated
+control3,examples/fastq/single_end/sample3.fastq.gz,untreated
+treatment1,examples/fastq/single_end/sample4.fastq.gz,treated
+treatment2,examples/fastq/single_end/sample5.fastq.gz,treated
+treatment3,examples/fastq/single_end/sample6.fastq.gz,treated

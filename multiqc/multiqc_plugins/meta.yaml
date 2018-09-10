@@ -1,0 +1,18 @@
+package:
+  name: multiqc_plugins
+  version: "1.0"
+
+source:
+   path: .
+
+build:
+  number: 2
+  preserve_egg_dir: True
+
+requirements:
+  host:
+    - python
+    - setuptools
+  run:
+    - python
+

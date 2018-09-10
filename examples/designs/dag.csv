@@ -1,0 +1,21 @@
+label,new_label,color,software,group
+cutadapt,,#1aff8c,cutadapt,Trimming
+dgea,Differential expression,#ff3333,DESeq2,Statistical analysis
+fastq_screen,,#66a3ff,FastQ Screen,QC metrics
+index_picard,Index,#d279d2,SAMtools,BAM file processing
+infer_experiment,Infer experiment,#3366ff,RseQC,QC metrics
+junction_annotation,Junction annotation,#3366ff,RseQC,QC metrics
+junction_saturation,Junction saturation,#3366ff,RseQC,QC metrics
+mismatch_profile,Mismatch profile,#3366ff,RseQC,QC metrics
+multiqc,,#669900,MultiQC,QC metrics
+picard_complexity,Complexity,#ff944d,Picard,QC metrics
+picard_duplicates,Duplicates,#ff944d,Picard,QC metrics
+picard_group,Group,#ff944d,Picard,QC metrics
+picard_multimetrics,Multimetrics,#ff944d,Picard,QC metrics
+picard_rnaseqmetrics,RNA-Seq metrics,#ff944d,Picard,QC metrics
+read_distribution,Read distribution,#3366ff,RseQC,QC metrics
+rnaseqc,,#a64dff,RNA-SeQC,QC metrics
+rsem_star,Genome alignment,#ff6666,STAR,Alignment
+rsem_star_mbscreen,Contaminants aligment,#ff6666,STAR,QC metrics
+sort_index_star,Sort and index,#d279d2,SAMtools,BAM file processing
+transcript_integrity_number,Transcript integrity number,#3366ff,RseQC,QC metrics

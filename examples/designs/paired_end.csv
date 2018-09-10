@@ -1,0 +1,7 @@
+sample,file1,file2,treatment
+control1,examples/fastq/paired_end/sample1_r1.fastq.gz,examples/fastq/paired_end/sample1_r2.fastq.gz,untreated
+control2,examples/fastq/paired_end/sample2_r1.fastq.gz,examples/fastq/paired_end/sample2_r2.fastq.gz,untreated
+control3,examples/fastq/paired_end/sample3_r1.fastq.gz,examples/fastq/paired_end/sample3_r2.fastq.gz,untreated
+treatment1,examples/fastq/paired_end/sample4_r1.fastq.gz,examples/fastq/paired_end/sample4_r2.fastq.gz,treated
+treatment2,examples/fastq/paired_end/sample5_r1.fastq.gz,examples/fastq/paired_end/sample5_r2.fastq.gz,treated
+treatment3,examples/fastq/paired_end/sample6_r1.fastq.gz,examples/fastq/paired_end/sample6_r2.fastq.gz,treated
