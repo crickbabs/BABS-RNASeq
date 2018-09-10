@@ -1,7 +1,7 @@
 
 ## Install Nextflow
 
-To run Nextflow it needs to be executable on the command-line. On an environment module system such as the one at The Francis Crick Institute this can be achieved by running the following command:
+To run Nextflow, it needs to be executable on the command-line. On an environment module system such as the one at The Francis Crick Institute this can be achieved by running the following command:
 
 ```bash
 module load nextflow/0.30.0
@@ -16,13 +16,13 @@ See [nextflow.io][url_nextflow] for further information on how to install Nextfl
 There are various ways in which you can obtain the pipeline itself, however we recommend that you obtain a local copy of the pipeline by running the following [git][url_git] command in a directory where you want to perform the analysis:
 
 ```bash
-git clone https://github.com/crickbabs/BABS-ATACSeqPE
+git clone https://github.com/crickbabs/BABS-RNASeq
 ```
 
-The Nextflow pipeline and associated config and executable files will appear in the `BABS-ATACSeqPE/` directory.
+The Nextflow pipeline and associated config and executable files will appear in the `BABS-RNASeq/` directory.
 
 ```bash
-cd BABS-ATACSeqPE
+cd BABS-RNASeq
 ```
 ## Install the custom MultiQC module
 
@@ -77,10 +77,10 @@ Install the multiqc plugins:
 Finally the variable `ANACONDA_ENV` needs to be changed in the `main.nf` file. This variable has to be set to the path of the anaconda environment you just created.
 
 
-You can now configure the pipeline to run on a Linux system of your choice. See [Pipeline configuration][url_doc_config] and [Reference genome][url_doc_genome] sections.
+You can now configure the pipeline. See [Design file][url_doc_design] and [Pipeline configuration][url_doc_config] sections.
 
 [url_nextflow]: http://www.nextflow.io
 [url_git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
-[url_doc_config]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/config.md
-[url_doc_genome]: https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/genome.md
+[url_doc_config]: https://github.com/crickbabs/BABS-RNASeq/blob/master/docs/config.md
+[url_doc_design]: https://github.com/crickbabs/BABS-RNASeq/blob/master/docs/design.md
 

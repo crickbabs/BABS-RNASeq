@@ -1,7 +1,7 @@
 
 ## Run pipeline
 
-When you have [installed](https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/install.md) the pipeline, [created a design file](https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/design.md) and [configured](https://github.com/crickbabs/BABS-ATACSeqPE/blob/master/docs/config.md) the pipeline you can run it with the command.
+When you have [installed][url_doc_install] the pipeline, [created a design file][url_doc_design] and [configured][url_doc_config] the pipeline you can run it with the command line.
 
 ### With a parameter file
 
@@ -32,4 +32,8 @@ Thus, in this way, all the parameters of the pipeline can be passed via a shell 
 , or:
 
 	$ nextflow run main.nf --genome_version GRCh38 --genome_release 86 --strandedness none --design examples/designs/paired_end.csv --conda /camp/stp/babs/working/software/anaconda/envs/rnaseq_pipeline
+
+[url_doc_install]: https://github.com/crickbabs/BABS-RNASeq/blob/master/docs/install.md
+[url_doc_design]: https://github.com/crickbabs/BABS-RNASeq/blob/master/docs/design.md
+[url_doc_config]: https://github.com/crickbabs/BABS-RNASeq/blob/master/docs/config.md
 

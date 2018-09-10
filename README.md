@@ -1,5 +1,5 @@
 
-# ![BABS-ATACSeqPE][logo]
+# ![BABS-RNASeq][logo]
 
 ## Introduction
 

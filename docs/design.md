@@ -20,3 +20,7 @@ And the one for the paired end test data contains:
 	control3,fastq/paired_end/sample3_r1.fastq.gz,fastq/paired_end/sample3_r2.fastq.gz,untreated
 	treatment3,fastq/paired_end/sample6_r1.fastq.gz,fastq/paired_end/sample6_r2.fastq.gz,treated
 
+You can now [configure the pipeline][url_doc_config].
+
+[url_doc_config]: https://github.com/crickbabs/BABS-RNASeq/blob/master/docs/config.md
+

@@ -3,6 +3,10 @@
 
 The following directories will be created in the current directory after the pipeline has finished.
 
+### `nextflow/`
+
+Nextflow's output (`report.html`, `timeline.html`, `trace.txt` and `dag.dot`).
+
 ### `quality_control/`
 
 |Directory|Description|
