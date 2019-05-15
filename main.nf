@@ -256,7 +256,7 @@ refflat = genome.refflat
 rrna_list = genome.rrna_list
 rrna_interval_list = genome.rrna_interval_list
 rnaseqc_gtf = genome.rnaseqc_gtf
-index = genome.rsem.star[ rough_read_length + "bp" ].index
+index = genome.rsem.rsem_star[ rough_read_length + "bp" ].index
 
 // directories
 r_script_dir = absolute_path("scripts/r")
