@@ -400,6 +400,7 @@ process sort_index {
 			into \
 				rsem_genome_indexed,
 				rsem_genome_indexed_multiqc
+		file("insert_size.txt") into insert_size
 
 	script:
 
@@ -408,6 +409,8 @@ process sort_index {
 
 		template "samtools/sort_index.sh"
 }
+
+insert_size.collectFile(name: "insert_sizes.txt", storeDir: results_dir)
 
 ///////////////
 process group {
