@@ -308,6 +308,7 @@ process cutadapt {
 			into \
 				cutadapt_fastqc,
 				cutadapt_rsem
+		file("md5.txt") into md5_raw
 
 	script:
 
@@ -332,6 +333,8 @@ process cutadapt {
 			template "cutadapt/paired_end.sh"
 		}
 }
+
+md5_raw.collectFile(name: "md5_raw.txt", storeDir: results_dir)
 
 /////////////////////////
 process fastqc_cutadapt {
@@ -367,12 +370,11 @@ process rsem {
 			into \
 				rsem_results,
 				rsem_results_analysis
+		file("md5.txt") into md5_processed
 
 	script:
-		
 		strandedness = params.strandedness
 		cpus = task.cpus
-
 		if (single_end) {
 
 			template "rsem/star/single_end.sh"
@@ -382,6 +384,8 @@ process rsem {
 			template "rsem/star/paired_end.sh"
 		}
 }
+
+md5_processed.collectFile(name: "md5_processed.txt", storeDir: results_dir)
 
 ////////////////////
 process sort_index {
@@ -606,6 +610,9 @@ process mismatch_profile {
 
 		template "rseqc/mismatch_profile.sh"
 }
+
+
+
 
 ///////////////////////////
 process read_distribution {

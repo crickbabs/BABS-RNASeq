@@ -9,3 +9,4 @@ cutadapt \
 	-O 1 \
 	$fastq > $logfile
 
+md5sum $fastq > md5.txt
