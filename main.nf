@@ -21,7 +21,7 @@ def absolute_path(path) {
 	def f = new File(path)
 
 	if ( ! f.isAbsolute() ) {
-		return Paths.get(workflow.projectDir.toString(), path).toString()
+		return Paths.get(workflow.launchDir.toString(), path).toString()
 	} else {
 		return path
 	}
@@ -36,7 +36,7 @@ def check_file_path(path) {
 	
 	// get absolute path
 	if ( ! f.isAbsolute() ) {
-		abs_path = Paths.get(workflow.projectDir.toString(), path).toString()
+		abs_path = Paths.get(workflow.launchDir.toString(), path).toString()
 	} else {
 		abs_path = path
 	}
@@ -195,47 +195,6 @@ read_length =
 rough_read_length = get_rough_read_length(read_length)
 
 
-///////////////////////////////////////////////////////////////////////////////
-/* --                                                                     -- */
-/* --                 EBROOTPICARD AND EBROOTRNAMINSEQC                   -- */
-/* --                                                                     -- */
-///////////////////////////////////////////////////////////////////////////////
-
-process ebrootpicard {
-
-	output:
-		stdout into ebrootpicard
-	
-	shell:
-		"""
-		echo \$EBROOTPICARD | tr -d "\n"
-		"""
-}
-
-EBROOTPICARD =
-	ebrootpicard
-		.collect()
-		.get()
-		.getAt(0)
-
-
-process ebrootrnaminseqc {
-
-	output:
-		stdout into ebrootrnaminseqc
-	
-	shell:
-		"""
-		echo \$EBROOTRNAMINSEQC | tr -d "\n"
-		"""
-}
-
-EBROOTRNAMINSEQC =
-	ebrootrnaminseqc
-		.collect()
-		.get()
-		.getAt(0)
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /* --                                                                     -- */
@@ -308,6 +267,7 @@ process cutadapt {
 			into \
 				cutadapt_fastqc,
 				cutadapt_rsem
+		file("md5.txt") into md5_raw
 
 	script:
 
@@ -332,6 +292,22 @@ process cutadapt {
 			template "cutadapt/paired_end.sh"
 		}
 }
+
+
+process md5_raw {
+
+	tag { name }
+
+	input: file '*.txt' from md5_raw.collect()
+	output: file 'md5_raw.txt'
+	"""
+	cat *.txt > md5_raw.txt
+	"""
+
+}
+
+
+
 
 /////////////////////////
 process fastqc_cutadapt {
@@ -367,12 +343,11 @@ process rsem {
 			into \
 				rsem_results,
 				rsem_results_analysis
+		file("md5.txt") into md5_processed
 
 	script:
-		
 		strandedness = params.strandedness
 		cpus = task.cpus
-
 		if (single_end) {
 
 			template "rsem/star/single_end.sh"
@@ -382,6 +357,20 @@ process rsem {
 			template "rsem/star/paired_end.sh"
 		}
 }
+
+process md5_processed {
+
+	tag { name }
+
+	input: file '*.txt' from md5_processed.collect()
+	output: file 'md5_processed.txt'
+	"""
+	cat *.txt > md5_processed.txt
+	"""
+
+}
+
+
 
 ////////////////////
 process sort_index {
@@ -396,6 +385,7 @@ process sort_index {
 			into \
 				rsem_genome_indexed,
 				rsem_genome_indexed_multiqc
+		file("insert_size.txt") into insert_size
 
 	script:
 
@@ -404,6 +394,19 @@ process sort_index {
 
 		template "samtools/sort_index.sh"
 }
+
+process insert_size {
+
+	tag { name }
+
+	input: file '*.txt' from insert_size.collect()
+	output: file 'insert_size.txt'
+	"""
+	cat *.txt > insert_size.txt
+	"""
+
+}
+
 
 ///////////////
 process group {
@@ -606,6 +609,9 @@ process mismatch_profile {
 
 		template "rseqc/mismatch_profile.sh"
 }
+
+
+
 
 ///////////////////////////
 process read_distribution {

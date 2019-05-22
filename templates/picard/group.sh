@@ -1,7 +1,7 @@
 #!/bin/sh
 
 java -Xmx10g -Djava.io.tmpdir=$tmp_dirname \
-	-jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups \
+	-jar \$EBROOTPICARD/picard.jar AddOrReplaceReadGroups \
 	VALIDATION_STRINGENCY=SILENT \
 	INPUT=$bam \
 	OUTPUT=$filename \
