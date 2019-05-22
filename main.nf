@@ -195,47 +195,6 @@ read_length =
 rough_read_length = get_rough_read_length(read_length)
 
 
-///////////////////////////////////////////////////////////////////////////////
-/* --                                                                     -- */
-/* --                 EBROOTPICARD AND EBROOTRNAMINSEQC                   -- */
-/* --                                                                     -- */
-///////////////////////////////////////////////////////////////////////////////
-
-process ebrootpicard {
-
-	output:
-		stdout into ebrootpicard
-	
-	shell:
-		"""
-		echo \$EBROOTPICARD | tr -d "\n"
-		"""
-}
-
-EBROOTPICARD =
-	ebrootpicard
-		.collect()
-		.get()
-		.getAt(0)
-
-
-process ebrootrnaminseqc {
-
-	output:
-		stdout into ebrootrnaminseqc
-	
-	shell:
-		"""
-		echo \$EBROOTRNAMINSEQC | tr -d "\n"
-		"""
-}
-
-EBROOTRNAMINSEQC =
-	ebrootrnaminseqc
-		.collect()
-		.get()
-		.getAt(0)
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /* --                                                                     -- */
@@ -334,7 +293,21 @@ process cutadapt {
 		}
 }
 
-md5_raw.collectFile(name: "md5_raw.txt", storeDir: results_dir)
+
+process md5_raw {
+
+	tag { name }
+
+	input: file '*.txt' from md5_raw.collect()
+	output: file 'md5_raw.txt'
+	"""
+	cat *.txt > md5_raw.txt
+	"""
+
+}
+
+
+
 
 /////////////////////////
 process fastqc_cutadapt {
@@ -385,7 +358,19 @@ process rsem {
 		}
 }
 
-md5_processed.collectFile(name: "md5_processed.txt", storeDir: results_dir)
+process md5_processed {
+
+	tag { name }
+
+	input: file '*.txt' from md5_processed.collect()
+	output: file 'md5_processed.txt'
+	"""
+	cat *.txt > md5_processed.txt
+	"""
+
+}
+
+
 
 ////////////////////
 process sort_index {
@@ -410,7 +395,18 @@ process sort_index {
 		template "samtools/sort_index.sh"
 }
 
-insert_size.collectFile(name: "insert_sizes.txt", storeDir: results_dir)
+process insert_size {
+
+	tag { name }
+
+	input: file '*.txt' from insert_size.collect()
+	output: file 'insert_size.txt'
+	"""
+	cat *.txt > insert_size.txt
+	"""
+
+}
+
 
 ///////////////
 process group {
