@@ -2,10 +2,11 @@
 genome_version: GRCm38
 genome_release: 86
 strandedness: none
-design: examples/designs/paired_end_2.csv
+design: examples/designs/paired_end.csv
 conda: /camp/stp/babs/working/software/anaconda/envs/rnaseq_pipeline/
 
 # if you want to override the default modules
 modules:
  - cutadapt/1.9.1-foss-2016b-Python-2.7.12
+ - FastQC/0.11.7-Java-1.8.0_172
 
