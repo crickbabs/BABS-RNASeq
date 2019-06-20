@@ -1,0 +1,32 @@
+Version 0.1.0
+ - Fix publish using soft rather than hardlinks
+ - Merge branch 'devel'
+ - Publish md5 results into rsem directory
+ - Remove ebrootpicard process by escaping shell variable when needed
+ - Add insert-size calculations for GEO
+ - Add md5 calculation for GEO submissions
+ - first commit
+ - first commit
+ - Make paths to design.csv relative to launch directory
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+ - first commit
+
