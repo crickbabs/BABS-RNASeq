@@ -294,17 +294,17 @@ process cutadapt {
 }
 
 
-process md5_raw {
+ process md5_raw {
 
-	tag { name }
+ 	tag { "md5_raw" }
 
-	input: file '*.txt' from md5_raw.collect()
-	output: file 'md5_raw.txt'
-	"""
-	cat *.txt > md5_raw.txt
-	"""
+ 	input: file 'tmp.txt' from md5_raw.collectFile(name: 'tmp.txt')
+ 	output: file 'md5_raw.txt'
+ 	"""
+ 	cat tmp.txt > md5_raw.txt
+ 	"""
 
-}
+ }
 
 
 
@@ -360,12 +360,12 @@ process rsem {
 
 process md5_processed {
 
-	tag { name }
+	tag { "md5_proc" }
 
-	input: file '*.txt' from md5_processed.collect()
+	input: file 'tmp.txt' from md5_processed.collectFile(name: 'tmp.txt')
 	output: file 'md5_processed.txt'
 	"""
-	cat *.txt > md5_processed.txt
+	cat tmp.txt > md5_processed.txt
 	"""
 
 }
