@@ -399,10 +399,10 @@ process insert_size {
 
 	tag { name }
 
-	input: file '*.txt' from insert_size.collect()
+	input: file 'tmp.txt' from insert_size.collectFile(name: 'tmp.txt')
 	output: file 'insert_size.txt'
 	"""
-	cat *.txt > insert_size.txt
+	cat tmp.txt > insert_size.txt
 	"""
 
 }
