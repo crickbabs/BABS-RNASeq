@@ -1,3 +1,10 @@
+Version 0.2.0:
+ - Fix absolute_path to be relative to nextflow script rather than launch
+ - Update R version
+ - Fix insert size for singleton sample
+ - Fix md5 calculation for singleton designs
+ - Update modules and design file location
+
 Version 0.1.0
  - Fix publish using soft rather than hardlinks
  - Merge branch 'devel'
