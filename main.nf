@@ -21,7 +21,7 @@ def absolute_path(path) {
 	def f = new File(path)
 
 	if ( ! f.isAbsolute() ) {
-		return Paths.get(workflow.launchDir.toString(), path).toString()
+		return Paths.get(workflow.projectDir.toString(), path).toString()
 	} else {
 		return path
 	}
