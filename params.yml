@@ -1,5 +1,5 @@
 
-genome_version: GRCm38
+genome_version: GRCh38
 genome_release: 86
 strandedness: none
 design: examples/designs/paired_end.csv
