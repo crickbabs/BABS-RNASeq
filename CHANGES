@@ -1,3 +1,7 @@
+Version 0.3.0:
+ - Refactor md5 and insertsize output into one metadata file
+ - Fix incorrect genome
+
 Version 0.2.0:
  - Fix absolute_path to be relative to nextflow script rather than launch
  - Update R version
