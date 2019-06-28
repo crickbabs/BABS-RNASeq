@@ -379,9 +379,22 @@ process sort_index {
 	input: file 'insert.txt' from insert_size.collectFile(name: 'insert.txt')
  	output: file 'metadata.txt'
  	"""
-	awk 'BEGIN{print "raw_md5:"}{print "  - name : "\$2"\\n    md5 : "\$1}' raw.txt > metadata.txt
-	awk 'BEGIN{print "processed_md5:"}{print "  - name : "\$2"\\n    md5 : "\$1}' proc.txt >> metadata.txt
-	awk -F '\t' 'BEGIN{print "insert:"}{print "  - name : "\$1"\\n    average : "\$3"\\n    sd : "\$4}' insert.txt >> metadata.txt
+	echo "genome : " > metadata.txt
+	echo "  version : " $version >> metadata.txt
+	echo "  release : " $release >> metadata.txt
+	echo "  genome : " $genome >> metadata.txt
+        echo "  fasta : " $fasta >> metadata.txt
+	echo "annotation : " >> metadata.txt
+	echo "  gtf : " $gtf >> metadata.txt
+	echo "  bed : " $bed >> metadata.txt
+	echo "  refflat : " $refflat >> metadata.txt
+	echo "  rrna_list : " $rrna_list >> metadata.txt
+	echo "  rrna_interval_list : " $rrna_interval_list >> metadata.txt
+	echo "  rnaseqc_gtf : " $rnaseqc_gtf >> metadata.txt
+	echo "  index : " $index  >> metadata.txt
+	awk 'BEGIN{print "raw_md5 : "}{print "  - name : "\$2"\\n    md5 : "\$1}' raw.txt >> metadata.txt
+	awk 'BEGIN{print "processed_md5 : "}{print "  - name : "\$2"\\n    md5 : "\$1}' proc.txt >> metadata.txt
+	awk -F '\t' 'BEGIN{print "insert : "}{print "  - name : "\$1"\\n    average : "\$3"\\n    sd : "\$4}' insert.txt >> metadata.txt
  	"""
 
  }
