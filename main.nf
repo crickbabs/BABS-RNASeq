@@ -294,17 +294,6 @@ process cutadapt {
 }
 
 
- process md5_raw {
-
- 	tag { "md5_raw" }
-
- 	input: file 'tmp.txt' from md5_raw.collectFile(name: 'tmp.txt')
- 	output: file 'md5_raw.txt'
- 	"""
- 	cat tmp.txt > md5_raw.txt
- 	"""
-
- }
 
 
 
@@ -358,18 +347,6 @@ process rsem {
 		}
 }
 
-process md5_processed {
-
-	tag { "md5_proc" }
-
-	input: file 'tmp.txt' from md5_processed.collectFile(name: 'tmp.txt')
-	output: file 'md5_processed.txt'
-	"""
-	cat tmp.txt > md5_processed.txt
-	"""
-
-}
-
 
 
 ////////////////////
@@ -395,17 +372,20 @@ process sort_index {
 		template "samtools/sort_index.sh"
 }
 
-process insert_size {
+ process metadata {
 
-	tag { name }
+ 	input: file 'raw.txt' from md5_raw.collectFile(name: 'raw.txt')
+ 	input: file 'proc.txt' from md5_processed.collectFile(name: 'proc.txt')
+	input: file 'insert.txt' from insert_size.collectFile(name: 'insert.txt')
+ 	output: file 'metadata.txt'
+ 	"""
+	awk 'BEGIN{print "raw_md5:"}{print "  - name : "\$2"\\n    md5 : "\$1}' raw.txt > metadata.txt
+	awk 'BEGIN{print "processed_md5:"}{print "  - name : "\$2"\\n    md5 : "\$1}' proc.txt >> metadata.txt
+	awk -F '\t' 'BEGIN{print "insert:"}{print "  - name : "\$1"\\n    average : "\$3"\\n    sd : "\$4}' insert.txt >> metadata.txt
+ 	"""
 
-	input: file 'tmp.txt' from insert_size.collectFile(name: 'tmp.txt')
-	output: file 'insert_size.txt'
-	"""
-	cat tmp.txt > insert_size.txt
-	"""
+ }
 
-}
 
 
 ///////////////
