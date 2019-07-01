@@ -1,3 +1,8 @@
+Version 0.4.0:
+ - Refactor metadata calculations so they're all in their own processes
+ - Make results and qc dirs parameters that can be changed
+ - Add annotation to metadata file
+
 Version 0.3.0:
  - Refactor md5 and insertsize output into one metadata file
  - Fix incorrect genome
