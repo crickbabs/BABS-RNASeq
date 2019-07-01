@@ -219,8 +219,8 @@ index = genome.rsem.rsem_star[ rough_read_length + "bp" ].index
 
 // directories
 r_script_dir = absolute_path("scripts/r")
-qc_dir = "quality_control"
-results_dir = "results"
+qc_dir = params.qc_dir
+results_dir = params.results_dir
 
 // conf
 multiqc_conf = absolute_path( "multiqc/conf.yml" )
