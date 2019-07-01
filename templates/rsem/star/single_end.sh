@@ -12,5 +12,3 @@ rsem-calculate-expression \
 	$fastq \
 	$index \
 	$name
-
-md5sum ${name}.genes.results >> md5.txt

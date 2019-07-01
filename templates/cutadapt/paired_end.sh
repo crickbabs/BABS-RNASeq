@@ -10,5 +10,3 @@ cutadapt \
 	-m 25 \
 	-O 1 \
 	$fastq1 $fastq2 > $logfile
-
-md5sum $fastq1 $fastq2 > md5.txt

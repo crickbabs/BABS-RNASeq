@@ -13,4 +13,3 @@ rsem-calculate-expression \
 	$index \
 	$name
 
-md5sum ${name}.genes.results >> md5.txt

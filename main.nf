@@ -122,7 +122,7 @@ if (single_end) {
 		.fromPath(design_filepath)
 		.splitCsv(header: true)
 		.map{ row -> file(row.file) }
-		.into{ fastq_files; fastq_files_fastqc }
+		.into{ fastq_files; fastq_files_fastqc; fastq_files_metadata }
 
 } else {
 
@@ -144,7 +144,7 @@ if (single_end) {
 		.map{ row -> [row.file1, row.file2] }
 		.flatten()
 		.map{ file(it) }
-		.into{ fastq_files; fastq_files_fastqc }
+		.into{ fastq_files; fastq_files_fastqc; fastq_files_metadata }
 }
 
 
@@ -253,6 +253,21 @@ process fastqc {
 		template "fastqc.sh"
 }
 
+
+//////////////////
+process md5_fastq {
+
+	input:
+		file(fastq) from fastq_files_metadata
+
+	output:
+		file("md5.txt") into md5_raw
+
+	"""
+	md5sum $fastq > md5.txt
+	"""
+}
+
 //////////////////
 process cutadapt {
 
@@ -267,7 +282,6 @@ process cutadapt {
 			into \
 				cutadapt_fastqc,
 				cutadapt_rsem
-		file("md5.txt") into md5_raw
 
 	script:
 
@@ -327,12 +341,12 @@ process rsem {
 	output:
 		set val(name), file("*.transcript.bam") into rsem_transcript
 		set val(name), file("*.stat") into rsem_stat
-		set val(name), file("*.STAR.genome.bam") into rsem_genome
+		set val(name), file("*.STAR.genome.bam") into rsem_genome, rsem_genome_metadata
 		set val(name), file("*.results") \
 			into \
 				rsem_results,
-				rsem_results_analysis
-		file("md5.txt") into md5_processed
+				rsem_results_analysis,
+				rsem_results_metadata
 
 	script:
 		strandedness = params.strandedness
@@ -347,7 +361,20 @@ process rsem {
 		}
 }
 
+process rsem_md5 {
 
+	tag { name }
+
+	input:
+		set val(name), file(results) from rsem_results_metadata
+
+	output:
+		file("md5.txt") into md5_processed
+
+	"""
+	md5sum $results > md5.txt
+	"""
+}
 
 ////////////////////
 process sort_index {
@@ -362,7 +389,6 @@ process sort_index {
 			into \
 				rsem_genome_indexed,
 				rsem_genome_indexed_multiqc
-		file("insert_size.txt") into insert_size
 
 	script:
 
@@ -372,29 +398,49 @@ process sort_index {
 		template "samtools/sort_index.sh"
 }
 
- process metadata {
+////////////////////
+process insert_size {
 
- 	input: file 'raw.txt' from md5_raw.collectFile(name: 'raw.txt')
- 	input: file 'proc.txt' from md5_processed.collectFile(name: 'proc.txt')
-	input: file 'insert.txt' from insert_size.collectFile(name: 'insert.txt')
- 	output: file 'metadata.txt'
- 	"""
-	echo "genome : " > metadata.txt
-	echo "  version : " $version >> metadata.txt
-	echo "  release : " $release >> metadata.txt
-	echo "  genome : " $genome >> metadata.txt
-        echo "  fasta : " $fasta >> metadata.txt
-	echo "annotation : " >> metadata.txt
-	echo "  gtf : " $gtf >> metadata.txt
-	echo "  bed : " $bed >> metadata.txt
-	echo "  refflat : " $refflat >> metadata.txt
-	echo "  rrna_list : " $rrna_list >> metadata.txt
-	echo "  rrna_interval_list : " $rrna_interval_list >> metadata.txt
-	echo "  rnaseqc_gtf : " $rnaseqc_gtf >> metadata.txt
-	echo "  index : " $index  >> metadata.txt
-	awk 'BEGIN{print "raw_md5 : "}{print "  - name : "\$2"\\n    md5 : "\$1}' raw.txt >> metadata.txt
-	awk 'BEGIN{print "processed_md5 : "}{print "  - name : "\$2"\\n    md5 : "\$1}' proc.txt >> metadata.txt
-	awk -F '\t' 'BEGIN{print "insert : "}{print "  - name : "\$1"\\n    average : "\$3"\\n    sd : "\$4}' insert.txt >> metadata.txt
+	tag { name }
+
+	input:
+		set val(name), file(bam) from rsem_genome_metadata
+
+	output:
+		file("insert_size.txt") into insert_size
+
+	"""
+	samtools stats $bam  | grep "insert size " | sed --expression "s/SN/$name/" | awk -v FS='\t' -v OFS='\t' 'NR % 2 == 1 { o=\$0 ; next } { print o , \$3 }' > insert_size.txt
+	"""
+}
+
+////////////////////
+process metadata {
+
+ 	input:
+	file 'raw.txt' from md5_raw.collectFile(name: 'raw.txt')
+ 	file 'proc.txt' from md5_processed.collectFile(name: 'proc.txt')
+	file 'insert.txt' from insert_size.collectFile(name: 'insert.txt')
+
+	output: file 'metadata.txt'
+
+	"""
+	echo "genome: " > metadata.txt
+	echo "  version: " $version >> metadata.txt
+	echo "  release: " $release >> metadata.txt
+	echo "  genome: " $genome >> metadata.txt
+        echo "  fasta: " $fasta >> metadata.txt
+	echo "annotation: " >> metadata.txt
+	echo "  gtf: " $gtf >> metadata.txt
+	echo "  bed: " $bed >> metadata.txt
+	echo "  refflat: " $refflat >> metadata.txt
+	echo "  rrna_list: " $rrna_list >> metadata.txt
+	echo "  rrna_interval_list: " $rrna_interval_list >> metadata.txt
+	echo "  rnaseqc_gtf: " $rnaseqc_gtf >> metadata.txt
+	echo "  index: " $index  >> metadata.txt
+	awk 'BEGIN{print "raw_md5: "}{print "  - name: "\$2"\\n    md5: "\$1}' raw.txt >> metadata.txt
+	awk 'BEGIN{print "processed_md5: "}{print "  - name: "\$2"\\n    md5: "\$1}' proc.txt >> metadata.txt
+	awk -F '\t' 'BEGIN{print "insert: "}{print "  - name: "\$1"\\n    average: "\$3"\\n    sd: "\$4}' insert.txt >> metadata.txt
  	"""
 
  }
