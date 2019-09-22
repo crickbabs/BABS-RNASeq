@@ -316,7 +316,7 @@ process unify_lanes {
 	input:
 		set val(name), file(group_of_fastq) from grouped_trimmed
 	output:
-		set val(name), file("${name}.fastq.gz") into cutadapt_fastq, cutadapt_rsem
+		set val(name), file("${name}.fastq.gz") into cutadapt_fastqc, cutadapt_rsem
 
 		
 	"""
