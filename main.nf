@@ -277,11 +277,9 @@ process cutadapt {
 		val sample from samples
 	
 	output:
-		set val(name), file('*.log') into cutadapt_log
+		set val(name), file('*.log') into cutadapt_log_ungrouped
 		set val(name), file('*.cutadapt.fastq.gz') \
-			into \
-				cutadapt_fastqc,
-				cutadapt_rsem
+			into trimmed_ungrouped_fastq 
 
 	script:
 
@@ -309,6 +307,33 @@ process cutadapt {
 
 
 
+grouped_trimmed = Channel.create()
+grouped_trimmed = trimmed_ungrouped_fastq.groupTuple()
+grouped_log = Channel.create()
+grouped_log = cutadapt_log_ungrouped.groupTuple()
+
+process unify_lanes {
+	input:
+		set val(name), file(group_of_fastq) from grouped_trimmed
+	output:
+		set val(name), file("${name}.fastq.gz") into cutadapt_fastq, cutadapt_rsem
+
+		
+	"""
+	cat ${group_of_fastq} > ${name}.fastq.gz
+	"""
+}
+
+process unify_cutlog {
+	input:
+		set val(name), file(group_of_log) from grouped_log
+	output:
+		set val(name), file("${name}.log") into cutadapt_log
+		
+	"""
+	cat ${group_of_log} > ${name}.log
+	"""
+}
 
 
 
