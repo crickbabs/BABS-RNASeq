@@ -314,24 +314,24 @@ grouped_log = cutadapt_log_ungrouped.groupTuple()
 
 process unify_lanes {
 	input:
-		set val(name), file(group_of_fastq) from grouped_trimmed
+		set val(name), file("fqgz*") from grouped_trimmed
 	output:
 		set val(name), file("${name}.fastq.gz") into cutadapt_fastqc, cutadapt_rsem
 
 		
 	"""
-	cat ${group_of_fastq} > ${name}.fastq.gz
+	cat fqgz* > ${name}.fastq.gz
 	"""
 }
 
 process unify_cutlog {
 	input:
-		set val(name), file(group_of_log) from grouped_log
+		set val(name), file("log*") from grouped_log
 	output:
 		set val(name), file("${name}.log") into cutadapt_log
 		
 	"""
-	cat ${group_of_log} > ${name}.log
+	cat log* > ${name}.log
 	"""
 }
 
