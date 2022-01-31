@@ -7,6 +7,8 @@ A [Nextflow][url_nextflow] pipeline for processing RNASeq sequencing data.
 
 The pipeline was written by [The Bioinformatics & Biostatistics Group][url_babs] at [The Francis Crick Institute][url_crick], London.
 
+**Please note that this pipeline has now been superceded within the BABS group.**
+
 ## Pipeline summary
 
 1. Raw read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc))
